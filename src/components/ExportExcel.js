@@ -4,7 +4,6 @@
 import React  from "react";
 import * as FileSaver from 'file-saver';
 import XLXS from 'sheetjs-style';
-import '../shared/css/FileValidator.css';
 
 const ExportToExcel = ({excelData, fileName}) => {
     const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
@@ -19,7 +18,7 @@ const ExportToExcel = ({excelData, fileName}) => {
 
     return(
         <>           
-          <button class="btn-next" onClick={(Event) => exportToExcel(excelData,fileName)} >Download Report</button>
+          <button className="btn-next" onClick={(Event) => exportToExcel(excelData,fileName)} >Download Report</button>
         </>
     )
 }

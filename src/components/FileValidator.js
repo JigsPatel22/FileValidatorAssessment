@@ -54,65 +54,73 @@ function FileValidator (){
                 let validArray =[];
                 let rowArray = [];             
                 // eslint-disable-next-line array-callback-return
-                parsedData.map((d1) => {                                
+                parsedData.map((value) => {                                
                     rowArray = [];           
-                    for (const property in d1) {    
-                        rowArray.push(`${d1[property]}`);
+                    for (const property in value) {    
+                        rowArray.push(`${value[property]}`);
                       }
                       validArray.push(rowArray);
                 });
-                for( var counter =0; counter < validArray.length - 1 ; counter++) {
-                    let startBal = Number(validArray[counter][3]);
-                    let mutBal = Number(validArray[counter][4]);
-                    let endBal = Number(validArray[counter][5]);
-                    referenceArray.push(validArray[counter][0]);
-                    // eslint-disable-next-line eqeqeq
-                    if( Number(startBal+mutBal).toFixed(2) != Number(endBal)){
-                        setViewDownload(true);
-                        let exlObj = {
-                            Reference: validArray[counter][0],
-                            Description: 'The end balance is not correct'
-                        };
-                        exportToExcelData.push(exlObj);
-                    }                
-                }
+                // eslint-disable-next-line array-callback-return
+                validArray.map((arrValue) => {                   
+                    if(arrValue[0] !== "") {                          
+                          let startBal = Number(arrValue[3]);
+                          let mutBal = Number(arrValue[4]);
+                          let endBal = Number(arrValue[5]);
+                          referenceArray.push(arrValue[0]);
+                          // eslint-disable-next-line eqeqeq
+                          if( Number(startBal+mutBal).toFixed(2) != Number(endBal)){
+                             setViewDownload(true);
+                             let exlObj = {
+                                 Reference: arrValue[0],
+                                 Description: 'The end balance is not correct'
+                             };
+                             exportToExcelData.push(exlObj);
+                        }
+                    }  
+                });
+                /* Code to pull duplicate item for reference number */
                 const duplicateElements = referenceArray.filter((item, index) => referenceArray.indexOf(item) !== index);                
-                for(var iterator = 0; iterator<duplicateElements.length; iterator++) {
+                // eslint-disable-next-line array-callback-return
+                duplicateElements.map((duplicateValue) => {
                     setViewDownload(true);
                     let exlObj = {
-                        Reference: duplicateElements[iterator],
+                        Reference: duplicateValue,
                         Description: 'Duplicate reference number found'
                     };
                     exportToExcelData.push(exlObj);
-                }                
+                });             
             };
         } else if(file.type === "text/xml") {        
            reader.onload = async ({ target }) => {
-            var xml = new XMLParser().parseFromString(target.result);
-            for( var counter = 0 ; counter< xml.getElementsByTagName('record').length; counter++) {
-                    let startBal = Number(xml.getElementsByTagName('record')[counter].children[2].value);
-                    let mutBal = Number(xml.getElementsByTagName('record')[counter].children[3].value);
-                    let endBal = Number(xml.getElementsByTagName('record')[counter].children[4].value);
-                    referenceArray.push(String(Object.values(xml.getElementsByTagName('record')[counter].attributes)));
+                var xml = new XMLParser().parseFromString(target.result);
+                // eslint-disable-next-line array-callback-return
+                xml.getElementsByTagName('record').map((data) => {                
+                    let startBal = Number(data.children[2].value);
+                    let mutBal = Number(data.children[3].value);
+                    let endBal = Number(data.children[4].value);
+                    referenceArray.push(String(Object.values(data.attributes)));
                     // eslint-disable-next-line eqeqeq
                     if( Number(startBal+mutBal).toFixed(2) != Number(endBal)){   
                         setViewDownload(true);                 
                         let exlObj = {
-                            Reference: String(Object.values(xml.getElementsByTagName('record')[counter].attributes)),
+                            Reference: String(Object.values(data.attributes)),
                             Description: 'The end balance is not correct'
                         };
                         exportToExcelData.push(exlObj);
-                    }   
-                }
+                    }               
+                });
+                /* Code to pull duplicate item for reference number */
                 const duplicateElements = referenceArray.filter((item, index) => referenceArray.indexOf(item) !== index);
-                for(var iterator = 0; iterator<duplicateElements.length; iterator++) {
+                // eslint-disable-next-line array-callback-return
+                duplicateElements.map((duplicateValue) => {
                     setViewDownload(true);
                     let exlObj = {
-                        Reference: duplicateElements[iterator],
+                        Reference: duplicateValue,
                         Description: 'Duplicate reference number found'
                     };
-                    exportToExcelData.push(exlObj);
-                } 
+                    exportToExcelData.push(exlObj); 
+                });            
            }           
         }
         setError('Validation for data completed.')       
@@ -121,18 +129,18 @@ function FileValidator (){
       };
     
       return (    
-        <div class="container center" >
-            <div class="row">
-                <div class="col-md-12">
-                    <h1 class="white">Welcome to FileValidator</h1>
-                    <p class="white">Please upload only valid csv/xml file.</p>
+        <div className="container center" >
+            <div className="row">
+                <div className="col-md-12">
+                    <h1 className="white">Welcome to FileValidator</h1>
+                    <p className="white">Please upload only valid csv/xml file.</p>
                 </div>
             </div>
             <div>
-                <input type="file" onChange={openFile} class="custom-file-upload" />
+                <input type="file" onChange={openFile} className="custom-file-upload" />
             </div>          
-            <button onClick={parseFile} class="custom-validate-button">Validate File</button>
-            <div class="white">
+            <button onClick={parseFile} className="custom-validate-button">Validate File</button>
+            <div className="white">
                 {error ? error : ""}
             </div>
             <br />
