@@ -9,8 +9,9 @@
 */
 import React, { useState } from 'react';
 import Papa from 'papaparse';
-import ExportToExcel from './exportexcel';
+import ExportToExcel from './ExportExcel';
 import XMLParser from 'react-xml-parser';
+import '../shared/css/FileValidator.css';
 
 // Allowed extensions for input file
 const allowedExtensions = ["csv","xml"];
@@ -119,22 +120,29 @@ function FileValidator (){
         reader.readAsText(file);    
       };
     
-      return (
-        <div className="App">
-          <h4>Welcome to FileValidator</h4>
-          <input type="file" onChange={openFile} style={{ marginTop: "3rem" }} />
-          <button onClick={parseFile}>Validate File</button>
-          <div style={{ marginTop: "3rem" }}>
-            {error ? error : ""}
-          </div>
-          <br />
-          {/* Conditional rendering for Download Report button only appears when there is 
-              any inconsitency found in file and accordingly report needs to generated.  */}
-          {
-            viewDownload &&
-            <ExportToExcel excelData={dataForExcel} fileName={"Excel Report"} />
-          }
-        </div>
+      return (    
+        <div class="container center" >
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="white">Welcome to FileValidator</h1>
+                    <p class="white">Please upload only valid csv/xml file.</p>
+                </div>
+            </div>
+            <div>
+                <input type="file" onChange={openFile} class="custom-file-upload" />
+            </div>          
+            <button onClick={parseFile} class="custom-validate-button">Validate File</button>
+            <div class="white">
+                {error ? error : ""}
+            </div>
+            <br />
+            {/* Conditional rendering for Download Report button only appears when there is 
+                any inconsitency found in file and accordingly report needs to generated.  */}
+            {
+                viewDownload &&
+                <ExportToExcel excelData={dataForExcel} fileName={"Excel Report"} />
+            }
+            </div>
       );
 }
 export default FileValidator;

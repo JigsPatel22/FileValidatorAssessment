@@ -1,6 +1,6 @@
 /* Entry point to the application */
 import React from 'react';
-import './App.css';
+import '../src/shared/css/App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import FileValidator from './components/FileValidator';
  

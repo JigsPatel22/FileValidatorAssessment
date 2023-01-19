@@ -1,0 +1,59 @@
+/*just bg and body style*/
+.container{
+    background-color:#1E2832;
+    padding-bottom:20px;
+    margin-top:10px;
+    border-radius:5px;
+}
+.center{
+    text-align:center;  
+}
+.white{
+    color:white;
+}
+    
+.btn-primary{
+    border-color: #ff3f3f !important;
+    color: #ffffff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    background-color: #ff3f3f !important;
+    border-color: #ff3f3f !important;
+}
+ 
+.custom-file-upload {
+    margin-top: 3em;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    color: aliceblue;
+}
+
+.custom-validate-button {
+    display: inline-block;
+    margin: 0.5rem 0.5rem 1rem 0.5rem;
+    clear: both;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    text-transform: initial;
+    border: none;
+    border-radius: 0.2rem;
+    outline: none;
+    padding: 0 1rem;
+    height: 36px;
+    line-height: 36px;
+    color: #fff;
+    transition: all 0.2s ease-in-out;
+    box-sizing: border-box;
+    background: #454cad;
+    border-color: #454cad;
+    cursor: pointer;
+}
+
+.btn-next
+{
+	background-color: #ff4d0d;
+	color: #fff;
+}
