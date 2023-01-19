@@ -1,6 +1,21 @@
-# Getting Started with Create React App
+## Packages to install
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+In the project directory at terminal please start with following commands:
+
+### npm install --save
+This command will add all the necessary node modules.
+
+### npm install papaparse --save
+This command will install csv parser module.
+
+### npm install react-xml-parser --save
+This command will install xml parser module.
+
+### npm install sheetjs-style --save
+This command will install utility that will help in generating excel report.
+
+### npm install file-saver --save
+This command will install utility to save(download) file that we have generated. 
 
 ## Available Scripts
 
