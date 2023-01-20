@@ -15,7 +15,13 @@ This command will install xml parser module.
 This command will install utility that will help in generating excel report.
 
 ### npm install file-saver --save
-This command will install utility to save(download) file that we have generated. 
+This command will install utility to save(download) file that we have generated.
+
+### npm install --dev jest enzyme enzyme-adapter-react-16 @types/jest
+1. jest is the test runner and framework that executes our tests and providers helper functions for assertions
+2. enzyme is a test helper library that enables us to render React components on a virtual DOM and provides method to inspect the DOM tree for specific 	components and their properties. Think of JQuery but for React components for testing.
+3. enzyme-adapter-react-16 is an adapter between React and Enzyme. This will be executed before running the tests.
+4. @types/jest is types library that provides typing and intellisence for global jest keywords such as describe and it in our test file. This makes type safety more robust for type files and provides better IDE support for test files.
 
 ## Available Scripts
 
